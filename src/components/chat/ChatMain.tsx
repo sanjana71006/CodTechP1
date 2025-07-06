@@ -1,27 +1,30 @@
 import { MessageList } from "./MessageList";
 import { MessageInput } from "./MessageInput";
 import { Hash, AtSign } from "lucide-react";
+import { useChat } from "@/hooks/useChat";
 
 interface ChatMainProps {
-  selectedChannel: string;
+  selectedChannelId: string;
   selectedUser: string | null;
 }
 
-export const ChatMain = ({ selectedChannel, selectedUser }: ChatMainProps) => {
+export const ChatMain = ({ selectedChannelId, selectedUser }: ChatMainProps) => {
+  const { channels } = useChat();
+  
   const getHeaderInfo = () => {
     if (selectedUser) {
-      // In a real app, you'd get user info from your data
       return {
         icon: <AtSign className="w-5 h-5" />,
-        title: "Alice Johnson", // This would come from user data
-        subtitle: "Direct Message"
+        title: "Direct Message",
+        subtitle: "Coming soon..."
       };
     }
     
+    const channel = channels.find(c => c.id === selectedChannelId);
     return {
       icon: <Hash className="w-5 h-5" />,
-      title: selectedChannel,
-      subtitle: `Welcome to #${selectedChannel}`
+      title: channel?.name || 'Select a channel',
+      subtitle: channel?.description || `Welcome to #${channel?.name}`
     };
   };
 
@@ -44,8 +47,8 @@ export const ChatMain = ({ selectedChannel, selectedUser }: ChatMainProps) => {
 
       {/* Messages Area */}
       <div className="flex-1 flex flex-col min-h-0">
-        <MessageList selectedChannel={selectedChannel} selectedUser={selectedUser} />
-        <MessageInput selectedChannel={selectedChannel} selectedUser={selectedUser} />
+        <MessageList selectedChannelId={selectedChannelId} selectedUser={selectedUser} />
+        <MessageInput selectedChannelId={selectedChannelId} selectedUser={selectedUser} />
       </div>
     </div>
   );

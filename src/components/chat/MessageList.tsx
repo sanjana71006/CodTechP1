@@ -1,52 +1,14 @@
 import { useEffect, useRef } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
-interface Message {
-  id: string;
-  user: string;
-  content: string;
-  timestamp: string;
-  avatar: string;
-}
+import { useChat } from "@/hooks/useChat";
 
 interface MessageListProps {
-  selectedChannel: string;
+  selectedChannelId: string;
   selectedUser: string | null;
 }
 
-// Mock messages for demo
-const mockMessages: Message[] = [
-  {
-    id: "1",
-    user: "Alice Johnson",
-    content: "Hey everyone! How's the project going?",
-    timestamp: "10:30 AM",
-    avatar: "/api/placeholder/40/40"
-  },
-  {
-    id: "2",
-    user: "Bob Smith",
-    content: "Great! Just finished the authentication flow. The new design looks amazing! 🎉",
-    timestamp: "10:32 AM",
-    avatar: "/api/placeholder/40/40"
-  },
-  {
-    id: "3",
-    user: "Carol Davis",
-    content: "Nice work Bob! I'm working on the database schema now. Should have it ready by tomorrow.",
-    timestamp: "10:35 AM",
-    avatar: "/api/placeholder/40/40"
-  },
-  {
-    id: "4",
-    user: "Alice Johnson",
-    content: "Perfect! Let me know if you need any help with the queries.",
-    timestamp: "10:36 AM",
-    avatar: "/api/placeholder/40/40"
-  }
-];
-
-export const MessageList = ({ selectedChannel, selectedUser }: MessageListProps) => {
+export const MessageList = ({ selectedChannelId, selectedUser }: MessageListProps) => {
+  const { messages, loadMessages } = useChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -54,57 +16,72 @@ export const MessageList = ({ selectedChannel, selectedUser }: MessageListProps)
   };
 
   useEffect(() => {
+    if (selectedChannelId) {
+      loadMessages(selectedChannelId);
+    }
+  }, [selectedChannelId]);
+
+  useEffect(() => {
     scrollToBottom();
-  }, [mockMessages]);
+  }, [messages]);
+
+  if (!selectedChannelId) {
+    return (
+      <div className="flex-1 flex items-center justify-center p-4">
+        <div className="text-center">
+          <h3 className="text-lg font-semibold text-foreground mb-2">Welcome to Chat App!</h3>
+          <p className="text-muted-foreground">Select a channel to start chatting</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex-1 overflow-y-auto p-4 space-y-4">
-      {mockMessages.map((message, index) => {
-        const prevMessage = mockMessages[index - 1];
-        const showAvatar = !prevMessage || prevMessage.user !== message.user;
-        
-        return (
-          <div key={message.id} className={`flex gap-3 ${!showAvatar ? 'ml-14' : ''}`}>
-            {showAvatar && (
-              <Avatar className="w-10 h-10 flex-shrink-0">
-                <AvatarImage src={message.avatar} alt={message.user} />
-                <AvatarFallback className="text-sm">
-                  {message.user.split(' ').map(n => n[0]).join('')}
-                </AvatarFallback>
-              </Avatar>
-            )}
-            
-            <div className="flex-1 min-w-0">
+      {messages.length === 0 ? (
+        <div className="flex items-center justify-center h-full">
+          <p className="text-muted-foreground">No messages yet. Start the conversation!</p>
+        </div>
+      ) : (
+        messages.map((message, index) => {
+          const prevMessage = messages[index - 1];
+          const showAvatar = !prevMessage || prevMessage.user_profiles?.display_name !== message.user_profiles?.display_name;
+          
+          const messageTime = new Date(message.created_at).toLocaleTimeString([], { 
+            hour: '2-digit', 
+            minute: '2-digit' 
+          });
+          
+          return (
+            <div key={message.id} className={`flex gap-3 ${!showAvatar ? 'ml-14' : ''}`}>
               {showAvatar && (
-                <div className="flex items-baseline gap-2 mb-1">
-                  <span className="font-semibold text-foreground text-sm">
-                    {message.user}
-                  </span>
-                  <span className="text-xs text-muted-foreground">
-                    {message.timestamp}
-                  </span>
-                </div>
+                <Avatar className="w-10 h-10 flex-shrink-0">
+                  <AvatarImage src={message.user_profiles?.avatar_url || undefined} alt={message.user_profiles?.display_name} />
+                  <AvatarFallback className="text-sm">
+                    {message.user_profiles?.display_name?.split(' ').map(n => n[0]).join('') || 'U'}
+                  </AvatarFallback>
+                </Avatar>
               )}
-              <div className="text-foreground text-sm leading-relaxed break-words">
-                {message.content}
+              
+              <div className="flex-1 min-w-0">
+                {showAvatar && (
+                  <div className="flex items-baseline gap-2 mb-1">
+                    <span className="font-semibold text-foreground text-sm">
+                      {message.user_profiles?.display_name || 'Unknown User'}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {messageTime}
+                    </span>
+                  </div>
+                )}
+                <div className="text-foreground text-sm leading-relaxed break-words">
+                  {message.content}
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
-      
-      {/* Typing indicator placeholder */}
-      <div className="flex items-center gap-3 opacity-50">
-        <Avatar className="w-6 h-6">
-          <AvatarFallback className="text-xs">BD</AvatarFallback>
-        </Avatar>
-        <div className="flex gap-1">
-          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-        </div>
-        <span className="text-sm text-muted-foreground">David is typing...</span>
-      </div>
+          );
+        })
+      )}
       
       <div ref={messagesEndRef} />
     </div>
