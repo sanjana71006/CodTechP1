@@ -1,7 +1,3 @@
-Absolutely! Here's a professional and visually appealing `README.md` tailored for your **real-time chat application project** hosted on [Lovable](https://lovable.dev). I've included relevant emojis, structured sections, and clarity for readers and collaborators.
-
----
-
 ````markdown
 # 💬 Real-Time Chat App
 
@@ -113,9 +109,3 @@ A special thanks to all mentors and teammates!
 
 ---
 
-```
-
----
-
-Let me know if you want a **version with images, badges, or GIF demo previews** — I’ll generate it for you!
-```
