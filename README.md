@@ -1,4 +1,4 @@
-````markdown
+
 # 💬 Real-Time Chat App
 
 Welcome to your **Lovable** 💜 real-time chat application!  
@@ -105,7 +105,6 @@ This project is under the [MIT License](LICENSE). Feel free to fork and build on
 ## 💖 Built with Love and Code
 
 Made during my **CodTech Internship** 🚀
-A special thanks to all mentors and teammates!
 
 ---
 
