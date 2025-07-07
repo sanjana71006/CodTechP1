@@ -69,11 +69,24 @@ export default {
 					other: 'hsl(var(--chat-bubble-other))',
 					'other-foreground': 'hsl(var(--chat-bubble-other-foreground))'
 				},
+				'chat-input': {
+					bg: 'hsl(var(--chat-input-bg))',
+					border: 'hsl(var(--chat-input-border))'
+				},
 				status: {
 					online: 'hsl(var(--online-status))',
 					away: 'hsl(var(--away-status))',
+					busy: 'hsl(var(--busy-status))',
 					offline: 'hsl(var(--offline-status))'
 				}
+			},
+			backgroundImage: {
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-secondary': 'var(--gradient-secondary)',
+				'gradient-instagram': 'var(--gradient-instagram)',
+				'gradient-sunset': 'var(--gradient-sunset)',
+				'gradient-ocean': 'var(--gradient-ocean)',
+				'gradient-forest': 'var(--gradient-forest)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -140,6 +153,22 @@ export default {
 					'50%': {
 						opacity: '0.8'
 					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0px)'
+					},
+					'50%': {
+						transform: 'translateY(-10px)'
+					}
+				},
+				'shimmer': {
+					'0%': {
+						transform: 'translateX(-100%)'
+					},
+					'100%': {
+						transform: 'translateX(100%)'
+					}
 				}
 			},
 			animation: {
@@ -148,16 +177,27 @@ export default {
 				'fade-in': 'fade-in 0.3s ease-out',
 				'slide-in-right': 'slide-in-right 0.3s ease-out',
 				'bounce-in': 'bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-				'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite'
+				'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite',
+				'float': 'float 3s ease-in-out infinite',
+				'shimmer': 'shimmer 2s linear infinite'
 			},
 			boxShadow: {
+				'sm': 'var(--shadow-sm)',
 				'soft': 'var(--shadow-soft)',
-				'chat': 'var(--shadow-md)',
-				'elegant': 'var(--shadow-lg)'
+				'md': 'var(--shadow-md)',
+				'lg': 'var(--shadow-lg)',
+				'xl': 'var(--shadow-xl)',
+				'glow': 'var(--shadow-glow)',
+				'instagram': 'var(--shadow-instagram)'
 			},
 			transitionTimingFunction: {
+				'fast': 'var(--transition-fast)',
 				'smooth': 'var(--transition-smooth)',
-				'bounce': 'var(--transition-bounce)'
+				'bounce': 'var(--transition-bounce)',
+				'spring': 'var(--transition-spring)'
+			},
+			backdropBlur: {
+				'xs': '2px',
 			}
 		}
 	},

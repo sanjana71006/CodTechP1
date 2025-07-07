@@ -8,126 +8,160 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Enhanced color palette for modern chat UI */
-    --background: 248 250% 99%;
-    --foreground: 220 13% 18%;
-
+    /* Modern chat themes */
+    --background: 248 50% 99%;
+    --foreground: 220 15% 15%;
     --card: 0 0% 100%;
-    --card-foreground: 220 13% 18%;
-
+    --card-foreground: 220 15% 15%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 13% 18%;
-
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
-    --primary-hover: 221 83% 48%;
-
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 220 13% 18%;
-
-    --muted: 217 33% 97%;
-    --muted-foreground: 215 16% 47%;
-
-    --accent: 210 40% 96%;
-    --accent-foreground: 220 13% 18%;
-
+    --popover-foreground: 220 15% 15%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 262 83% 53%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 15% 15%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 13% 45%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 15% 15%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-
+    --destructive-foreground: 0 0% 100%;
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 221 83% 53%;
+    --ring: 262 83% 58%;
+    --radius: 1rem;
 
-    --radius: 0.75rem;
-
-    /* Chat-specific colors */
-    --chat-bubble-user: 221 83% 53%;
-    --chat-bubble-user-foreground: 210 40% 98%;
-    --chat-bubble-other: 210 40% 96%;
-    --chat-bubble-other-foreground: 220 13% 18%;
+    /* Instagram-inspired chat colors */
+    --chat-bubble-user: 315 100% 70%;
+    --chat-bubble-user-foreground: 0 0% 100%;
+    --chat-bubble-other: 220 14% 96%;
+    --chat-bubble-other-foreground: 220 15% 15%;
+    --chat-input-bg: 0 0% 100%;
+    --chat-input-border: 220 13% 91%;
     
+    /* Status colors */
     --online-status: 142 76% 36%;
     --away-status: 48 96% 53%;
+    --busy-status: 0 84% 60%;
     --offline-status: 220 13% 69%;
 
-    /* Sidebar colors */
-    --sidebar-background: 220 13% 98%;
-    --sidebar-foreground: 220 13% 38%;
-    --sidebar-primary: 221 83% 53%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 220 13% 95%;
-    --sidebar-accent-foreground: 220 13% 28%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 221 83% 53%;
+    /* Floating sidebar */
+    --sidebar-background: 0 0% 100% / 0.95;
+    --sidebar-backdrop: 0 0% 0% / 0.1;
+    --sidebar-foreground: 220 15% 25%;
+    --sidebar-primary: 262 83% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 220 15% 25%;
+    --sidebar-border: 220 13% 91% / 0.5;
+    --sidebar-ring: 262 83% 58%;
 
-    /* Gradients and effects */
-    --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%), hsl(221 83% 48%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(248 250% 99%));
+    /* Modern gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(315 100% 70%), hsl(262 83% 58%));
+    --gradient-secondary: linear-gradient(135deg, hsl(220 14% 96%), hsl(220 13% 91%));
+    --gradient-instagram: linear-gradient(45deg, hsl(315 100% 70%), hsl(45 100% 60%), hsl(315 100% 70%));
+    --gradient-sunset: linear-gradient(135deg, hsl(25 95% 65%), hsl(315 100% 70%));
+    --gradient-ocean: linear-gradient(135deg, hsl(200 100% 70%), hsl(240 100% 70%));
+    --gradient-forest: linear-gradient(135deg, hsl(140 60% 60%), hsl(120 40% 50%));
+    
+    /* Enhanced shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.05);
     --shadow-soft: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
     --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1);
     --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 10px 10px -5px hsl(0 0% 0% / 0.04);
+    --shadow-glow: 0 0 20px hsl(262 83% 58% / 0.3);
+    --shadow-instagram: 0 8px 32px hsl(315 100% 70% / 0.3);
 
-    /* Animations */
-    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* Smooth transitions */
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   .dark {
-    --background: 224 71% 4%;
+    --background: 222 47% 4%;
     --foreground: 213 31% 91%;
-
-    --card: 224 71% 4%;
+    --card: 222 47% 6%;
     --card-foreground: 213 31% 91%;
-
-    --popover: 224 71% 4%;
+    --popover: 222 47% 6%;
     --popover-foreground: 213 31% 91%;
-
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 84% 5%;
-    --primary-hover: 217 91% 55%;
-
-    --secondary: 222 84% 5%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 262 83% 53%;
+    --secondary: 222 47% 11%;
     --secondary-foreground: 213 31% 91%;
-
-    --muted: 223 47% 11%;
+    --muted: 222 47% 11%;
     --muted-foreground: 215 20% 65%;
-
-    --accent: 223 47% 11%;
+    --accent: 222 47% 11%;
     --accent-foreground: 213 31% 91%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 222 47% 11%;
+    --input: 222 47% 11%;
+    --ring: 262 83% 58%;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 213 31% 91%;
-
-    --border: 223 47% 11%;
-    --input: 223 47% 11%;
-    --ring: 217 91% 60%;
-
-    /* Chat-specific colors - dark mode */
-    --chat-bubble-user: 217 91% 60%;
-    --chat-bubble-user-foreground: 222 84% 5%;
-    --chat-bubble-other: 223 47% 11%;
+    /* Dark mode chat colors */
+    --chat-bubble-user: 315 100% 70%;
+    --chat-bubble-user-foreground: 0 0% 100%;
+    --chat-bubble-other: 222 47% 11%;
     --chat-bubble-other-foreground: 213 31% 91%;
+    --chat-input-bg: 222 47% 6%;
+    --chat-input-border: 222 47% 11%;
     
-    --online-status: 142 71% 45%;
-    --away-status: 48 96% 53%;
-    --offline-status: 215 20% 65%;
-
-    /* Sidebar colors - dark mode */
-    --sidebar-background: 224 71% 4%;
+    /* Dark mode sidebar */
+    --sidebar-background: 222 47% 4% / 0.95;
+    --sidebar-backdrop: 0 0% 0% / 0.3;
     --sidebar-foreground: 213 31% 91%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 222 84% 5%;
-    --sidebar-accent: 223 47% 11%;
+    --sidebar-primary: 262 83% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 47% 11%;
     --sidebar-accent-foreground: 213 31% 91%;
-    --sidebar-border: 223 47% 11%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-border: 222 47% 11% / 0.5;
+    --sidebar-ring: 262 83% 58%;
 
-    /* Gradients and effects - dark mode */
-    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 55%));
-    --gradient-subtle: linear-gradient(180deg, hsl(224 71% 4%), hsl(223 47% 11%));
+    /* Dark mode gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(315 100% 70%), hsl(262 83% 58%));
+    --gradient-secondary: linear-gradient(135deg, hsl(222 47% 11%), hsl(222 47% 6%));
+    --gradient-instagram: linear-gradient(45deg, hsl(315 100% 70%), hsl(45 100% 60%), hsl(315 100% 70%));
+    --gradient-sunset: linear-gradient(135deg, hsl(25 95% 65%), hsl(315 100% 70%));
+    --gradient-ocean: linear-gradient(135deg, hsl(200 100% 70%), hsl(240 100% 70%));
+    --gradient-forest: linear-gradient(135deg, hsl(140 60% 60%), hsl(120 40% 50%));
+    
+    /* Dark mode shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);
     --shadow-soft: 0 1px 3px 0 hsl(0 0% 0% / 0.3), 0 1px 2px -1px hsl(0 0% 0% / 0.3);
     --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -2px hsl(0 0% 0% / 0.3);
     --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.3), 0 4px 6px -4px hsl(0 0% 0% / 0.3);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.3), 0 10px 10px -5px hsl(0 0% 0% / 0.2);
+    --shadow-glow: 0 0 20px hsl(262 83% 58% / 0.4);
+    --shadow-instagram: 0 8px 32px hsl(315 100% 70% / 0.4);
+  }
+
+  /* Theme variations */
+  .theme-sunset {
+    --primary: 25 95% 65%;
+    --primary-foreground: 0 0% 100%;
+    --gradient-primary: linear-gradient(135deg, hsl(25 95% 65%), hsl(315 100% 70%));
+    --chat-bubble-user: 25 95% 65%;
+    --sidebar-primary: 25 95% 65%;
+  }
+
+  .theme-ocean {
+    --primary: 200 100% 70%;
+    --primary-foreground: 0 0% 100%;
+    --gradient-primary: linear-gradient(135deg, hsl(200 100% 70%), hsl(240 100% 70%));
+    --chat-bubble-user: 200 100% 70%;
+    --sidebar-primary: 200 100% 70%;
+  }
+
+  .theme-forest {
+    --primary: 140 60% 60%;
+    --primary-foreground: 0 0% 100%;
+    --gradient-primary: linear-gradient(135deg, hsl(140 60% 60%), hsl(120 40% 50%));
+    --chat-bubble-user: 140 60% 60%;
+    --sidebar-primary: 140 60% 60%;
   }
 }
 
@@ -143,83 +177,215 @@ All colors MUST be HSL.
 }
 
 @layer components {
-  /* Chat-specific utility classes */
+  /* Modern Instagram-style components */
   .chat-message-enter {
     @apply animate-fade-in;
   }
   
   .chat-bubble {
-    @apply rounded-2xl px-4 py-2 max-w-xs shadow-soft;
+    @apply rounded-3xl px-6 py-3 max-w-sm shadow-md backdrop-blur-sm;
+    transition: var(--transition-smooth);
+  }
+  
+  .chat-bubble:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
   }
   
   .chat-bubble-user {
-    @apply bg-chat-bubble-user text-chat-bubble-user-foreground ml-auto;
+    background: var(--gradient-primary);
+    @apply text-white ml-auto shadow-instagram;
   }
   
   .chat-bubble-other {
-    @apply bg-chat-bubble-other text-chat-bubble-other-foreground;
+    @apply bg-card text-card-foreground border border-border/50;
   }
   
+  /* Floating sidebar */
+  .floating-sidebar {
+    @apply fixed left-4 top-4 bottom-4 w-80 z-50 md:w-72;
+    background: hsl(var(--sidebar-background));
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--sidebar-border));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-xl);
+    transition: var(--transition-smooth);
+  }
+  
+  .floating-sidebar.collapsed {
+    @apply w-16;
+  }
+  
+  .sidebar-backdrop {
+    @apply fixed inset-0 z-40 backdrop-blur-sm;
+    background: hsl(var(--sidebar-backdrop));
+  }
+  
+  /* Modern status indicators */
   .status-indicator {
-    @apply w-2 h-2 rounded-full;
+    @apply w-3 h-3 rounded-full border-2 border-card;
+    box-shadow: var(--shadow-sm);
   }
   
   .status-online {
-    @apply bg-status-online;
+    @apply bg-green-500;
+    box-shadow: 0 0 8px hsl(var(--online-status) / 0.4);
   }
   
   .status-away {
-    @apply bg-status-away;
+    @apply bg-yellow-500;
+    box-shadow: 0 0 8px hsl(var(--away-status) / 0.4);
+  }
+  
+  .status-busy {
+    @apply bg-red-500;
+    box-shadow: 0 0 8px hsl(var(--busy-status) / 0.4);
   }
   
   .status-offline {
-    @apply bg-status-offline;
+    @apply bg-gray-400;
   }
   
-  /* Enhanced button styles */
-  .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary-hover transition-smooth;
+  /* Enhanced avatars */
+  .avatar-modern {
+    @apply rounded-full shadow-md border-2 border-white dark:border-gray-800;
+    transition: var(--transition-smooth);
   }
   
-  /* Sidebar enhancements */
-  .sidebar-item {
-    @apply transition-smooth hover:bg-sidebar-accent hover:text-sidebar-accent-foreground rounded-md;
+  .avatar-modern:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-glow);
   }
   
-  .sidebar-item-active {
-    @apply bg-sidebar-accent text-sidebar-accent-foreground border-l-2 border-sidebar-primary;
+  /* Floating input bar */
+  .floating-input {
+    @apply fixed bottom-6 left-6 right-6 md:left-80 md:right-6;
+    background: hsl(var(--chat-input-bg));
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--chat-input-border));
+    border-radius: 2rem;
+    box-shadow: var(--shadow-xl);
+    transition: var(--transition-smooth);
   }
   
-  /* Input enhancements */
-  .input-enhanced {
-    @apply focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth;
+  .floating-input:focus-within {
+    box-shadow: var(--shadow-glow);
+    border-color: hsl(var(--primary));
   }
   
-  /* Card enhancements */
-  .card-enhanced {
-    @apply bg-card border border-border shadow-soft rounded-lg;
+  /* Theme toggle button */
+  .theme-toggle {
+    @apply relative w-12 h-6 rounded-full transition-all duration-300;
+    background: var(--gradient-primary);
   }
   
-  /* Smooth scrollbar */
-  .scrollbar-thin {
+  .theme-toggle-thumb {
+    @apply absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-md;
+    transition: var(--transition-spring);
+  }
+  
+  .theme-toggle.dark .theme-toggle-thumb {
+    transform: translateX(1.5rem);
+  }
+  
+  /* Gradient buttons */
+  .btn-gradient {
+    background: var(--gradient-primary);
+    @apply text-white border-none shadow-lg;
+    transition: var(--transition-smooth);
+  }
+  
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  /* Glass morphism effect */
+  .glass {
+    backdrop-filter: blur(20px);
+    background: hsl(var(--card) / 0.8);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+  
+  /* Typing indicator */
+  .typing-indicator {
+    @apply flex items-center gap-1 px-4 py-2 rounded-full bg-muted;
+  }
+  
+  .typing-dot {
+    @apply w-2 h-2 bg-muted-foreground rounded-full;
+    animation: typing 1.4s infinite ease-in-out;
+  }
+  
+  .typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  /* Enhanced scrollbar */
+  .scrollbar-modern {
     scrollbar-width: thin;
-    scrollbar-color: hsl(var(--muted)) transparent;
+    scrollbar-color: hsl(var(--primary) / 0.3) transparent;
   }
   
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 6px;
+  .scrollbar-modern::-webkit-scrollbar {
+    width: 8px;
   }
   
-  .scrollbar-thin::-webkit-scrollbar-track {
+  .scrollbar-modern::-webkit-scrollbar-track {
     background: transparent;
   }
   
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    background-color: hsl(var(--muted));
-    border-radius: 3px;
+  .scrollbar-modern::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.3);
+    border-radius: 4px;
+    transition: var(--transition-smooth);
   }
   
-  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background-color: hsl(var(--muted-foreground));
+  .scrollbar-modern::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
+  }
+  
+  /* Smooth animations */
+  @keyframes typing {
+    0%, 60%, 100% {
+      transform: translateY(0);
+    }
+    30% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  @keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInFromRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .slide-in-left {
+    animation: slideInFromLeft 0.3s ease-out;
+  }
+  
+  .slide-in-right {
+    animation: slideInFromRight 0.3s ease-out;
   }
 }
