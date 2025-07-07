@@ -3,6 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { useChat } from "@/hooks/useChat";
 import { useAuth } from "@/components/auth/AuthProvider";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 interface ChatSidebarProps {
   selectedChannelId: string;
@@ -17,22 +18,25 @@ export const ChatSidebar = ({ selectedChannelId, onSelectChannel, selectedUser, 
   const onlineUsers = users.filter(u => u.status === 'online');
 
   return (
-    <div className="w-64 bg-card border-r border-border flex flex-col">
+    <div className="floating-sidebar glass scrollbar-modern">
       {/* Header with user info */}
-      <div className="p-4 border-b border-border">
+      <div className="p-4 border-b border-sidebar-border">
         <div className="flex items-center justify-between">
-          <h1 className="text-lg font-semibold text-foreground">Chat App</h1>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={signOut}
-            className="h-8 w-8 p-0"
-          >
-            <LogOut className="w-4 h-4" />
-          </Button>
+          <h1 className="text-lg font-semibold text-sidebar-foreground">Chat App</h1>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={signOut}
+              className="h-8 w-8 p-0 text-sidebar-foreground hover:bg-sidebar-accent"
+            >
+              <LogOut className="w-4 h-4" />
+            </Button>
+          </div>
         </div>
         {user && (
-          <p className="text-sm text-muted-foreground mt-1">
+          <p className="text-sm text-sidebar-foreground/70 mt-1">
             Welcome, {user.email}
           </p>
         )}
@@ -42,8 +46,8 @@ export const ChatSidebar = ({ selectedChannelId, onSelectChannel, selectedUser, 
       <div className="flex-1 overflow-y-auto">
         <div className="p-4">
           <div className="flex items-center gap-2 mb-3">
-            <Hash className="w-4 h-4 text-muted-foreground" />
-            <span className="text-sm font-medium text-foreground uppercase tracking-wide">Channels</span>
+            <Hash className="w-4 h-4 text-sidebar-foreground/70" />
+            <span className="text-sm font-medium text-sidebar-foreground uppercase tracking-wide">Channels</span>
           </div>
           
           <div className="space-y-1">
@@ -54,10 +58,10 @@ export const ChatSidebar = ({ selectedChannelId, onSelectChannel, selectedUser, 
                   onSelectChannel(channel.id);
                   onSelectUser(null);
                 }}
-                className={`w-full flex items-center justify-between px-2 py-1 rounded text-sm transition-colors ${
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm transition-all duration-200 ${
                   selectedChannelId === channel.id && !selectedUser
-                    ? "bg-accent text-accent-foreground"
-                    : "text-muted-foreground hover:bg-accent/50 hover:text-foreground"
+                    ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-md"
+                    : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground"
                 }`}
               >
                 <span>#{channel.name}</span>
@@ -69,8 +73,8 @@ export const ChatSidebar = ({ selectedChannelId, onSelectChannel, selectedUser, 
         {/* Users Section */}
         <div className="p-4">
           <div className="flex items-center gap-2 mb-3">
-            <Users className="w-4 h-4 text-muted-foreground" />
-            <span className="text-sm font-medium text-foreground uppercase tracking-wide">
+            <Users className="w-4 h-4 text-sidebar-foreground/70" />
+            <span className="text-sm font-medium text-sidebar-foreground uppercase tracking-wide">
               Online - {onlineUsers.length}
             </span>
           </div>
@@ -79,18 +83,18 @@ export const ChatSidebar = ({ selectedChannelId, onSelectChannel, selectedUser, 
             {users.map((userProfile) => (
               <div
                 key={userProfile.id}
-                className="flex items-center gap-3 px-2 py-2 rounded text-muted-foreground"
+                className="flex items-center gap-3 px-3 py-2 rounded-xl text-sidebar-foreground/70 hover:bg-sidebar-accent/50 transition-colors"
               >
                 <div className="relative">
-                  <Avatar className="w-8 h-8">
+                  <Avatar className="w-8 h-8 avatar-modern">
                     <AvatarImage src={userProfile.avatar_url || undefined} alt={userProfile.display_name} />
-                    <AvatarFallback className="text-xs">
+                    <AvatarFallback className="text-xs bg-gradient-primary text-white">
                       {userProfile.display_name?.split(' ').map(n => n[0]).join('') || 'U'}
                     </AvatarFallback>
                   </Avatar>
-                  <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-card ${
-                    userProfile.status === 'online' ? 'bg-green-500' :
-                    userProfile.status === 'away' ? 'bg-yellow-500' : 'bg-gray-500'
+                  <div className={`status-indicator absolute -bottom-1 -right-1 ${
+                    userProfile.status === 'online' ? 'status-online' :
+                    userProfile.status === 'away' ? 'status-away' : 'status-offline'
                   }`} />
                 </div>
                 <span className="text-sm font-medium truncate">{userProfile.display_name}</span>

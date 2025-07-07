@@ -31,16 +31,16 @@ export const ChatMain = ({ selectedChannelId, selectedUser }: ChatMainProps) => 
   const { icon, title, subtitle } = getHeaderInfo();
 
   return (
-    <div className="flex-1 flex flex-col">
+    <div className="flex-1 flex flex-col relative">
       {/* Chat Header */}
-      <div className="h-16 border-b border-border flex items-center px-6 bg-card">
+      <div className="h-16 border-b border-border/20 flex items-center px-6 glass backdrop-blur-xl">
         <div className="flex items-center gap-3">
-          <div className="text-muted-foreground">
+          <div className="text-foreground/70">
             {icon}
           </div>
           <div>
             <h2 className="text-lg font-semibold text-foreground">{title}</h2>
-            <p className="text-sm text-muted-foreground">{subtitle}</p>
+            <p className="text-sm text-foreground/60">{subtitle}</p>
           </div>
         </div>
       </div>
@@ -48,8 +48,10 @@ export const ChatMain = ({ selectedChannelId, selectedUser }: ChatMainProps) => 
       {/* Messages Area */}
       <div className="flex-1 flex flex-col min-h-0">
         <MessageList selectedChannelId={selectedChannelId} selectedUser={selectedUser} />
-        <MessageInput selectedChannelId={selectedChannelId} selectedUser={selectedUser} />
       </div>
+      
+      {/* Floating Message Input */}
+      <MessageInput selectedChannelId={selectedChannelId} selectedUser={selectedUser} />
     </div>
   );
 };

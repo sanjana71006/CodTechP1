@@ -33,7 +33,7 @@ export const MessageInput = ({ selectedChannelId, selectedUser }: MessageInputPr
     : channel ? `Message #${channel.name}` : "Select a channel first";
 
   return (
-    <div className="p-4 border-t border-border bg-card">
+    <div className="floating-input p-4">
       <div className="flex items-end gap-3">
         <div className="flex-1 relative">
           <Input
@@ -42,15 +42,15 @@ export const MessageInput = ({ selectedChannelId, selectedUser }: MessageInputPr
             onKeyPress={handleKeyPress}
             placeholder={placeholder}
             disabled={!selectedChannelId || selectedUser !== null}
-            className="pr-20 py-3 text-sm resize-none"
+            className="pr-20 py-4 text-base rounded-2xl border-0 bg-transparent focus:ring-2 focus:ring-primary/20"
           />
           
           {/* Input actions */}
-          <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
             <Button
               variant="ghost"
               size="sm"
-              className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground"
+              className="h-8 w-8 p-0 text-foreground/60 hover:text-foreground hover:bg-primary/10 rounded-full"
               disabled
             >
               <Paperclip className="w-4 h-4" />
@@ -58,7 +58,7 @@ export const MessageInput = ({ selectedChannelId, selectedUser }: MessageInputPr
             <Button
               variant="ghost"
               size="sm"
-              className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground"
+              className="h-8 w-8 p-0 text-foreground/60 hover:text-foreground hover:bg-primary/10 rounded-full"
               disabled
             >
               <Smile className="w-4 h-4" />
@@ -69,13 +69,13 @@ export const MessageInput = ({ selectedChannelId, selectedUser }: MessageInputPr
         <Button
           onClick={handleSend}
           disabled={!message.trim() || !selectedChannelId || selectedUser !== null}
-          className="h-10 px-4"
+          className="h-12 px-6 btn-gradient rounded-2xl shadow-lg hover:scale-105 transition-all duration-200"
         >
-          <Send className="w-4 h-4" />
+          <Send className="w-5 h-5" />
         </Button>
       </div>
       
-      <div className="mt-2 text-xs text-muted-foreground">
+      <div className="mt-3 text-xs text-foreground/50 text-center">
         {selectedChannelId ? "Press Enter to send, Shift + Enter for new line" : "Select a channel to start messaging"}
       </div>
     </div>

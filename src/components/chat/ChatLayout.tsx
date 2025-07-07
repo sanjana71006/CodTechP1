@@ -53,17 +53,22 @@ export const ChatLayout = () => {
   }
 
   return (
-    <div className="h-screen flex bg-background">
+    <div className="h-screen bg-gradient-primary relative overflow-hidden">
+      {/* Floating Sidebar */}
       <ChatSidebar 
         selectedChannelId={selectedChannelId}
         onSelectChannel={setSelectedChannelId}
         selectedUser={selectedUser}
         onSelectUser={setSelectedUser}
       />
-      <ChatMain 
-        selectedChannelId={selectedChannelId}
-        selectedUser={selectedUser}
-      />
+      
+      {/* Main Chat Area */}
+      <div className="md:ml-80 h-full">
+        <ChatMain 
+          selectedChannelId={selectedChannelId}
+          selectedUser={selectedUser}
+        />
+      </div>
     </div>
   );
 };
